@@ -17,7 +17,7 @@
             <div class="col text-center">
                 <img :src="image" :alt="nome">
                 <h6>{{archetipo}}</h6>
-                <h6>{{nome}}</h6>
+                <h5>{{nome}}</h5>
             </div>
         </div>
     </div>
@@ -29,12 +29,18 @@
 @use 'bootstrap';
 
 @use '../styles/variables' as *;
-    .col {
-        background-color: $My-color-primary;
- 
-    }
+    
+.col {
+    height: 400px;
+    background-color: $My-color-primary;
+}
     img{
-        min-height: 300px;
+        height: 70%;
+        padding: 5px;
+    }
+    h6 {
+        color: white;
+        padding: 10px;
     }
 
 </style>

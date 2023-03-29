@@ -25,7 +25,7 @@
                 <SingleCard 
                     :archetipo="carta.archetype"
                     :nome="carta.name"
-                    :image="carta.card_image"
+                    :image="carta.card_images[0].image_url_small"
                 />
             </div>
         </div>
@@ -35,5 +35,7 @@
 
 <style scoped lang="scss">
 @use 'bootstrap';
+@use '../styles/variables' as *;
+
 
 </style>
