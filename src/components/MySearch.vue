@@ -1,4 +1,6 @@
 <script>
+    import {store} from '../store.js'
+
     export default {
         name: 'MySearch',
         props:{
@@ -6,9 +8,19 @@
         },
         data(){
             return{
+                store,
                 
             }
-        }
+        }/*,
+        methods: {
+            pippo(){
+                console.log(this.raceName);
+                console.log(this.store.raceSelected);
+                if(!this.store.raceSelected.includes(this.raceName)){
+                    this.store.raceSelected += this.raceName
+                }
+            }
+        }*/
     }
 
 </script>
@@ -18,8 +30,8 @@
     <div class="container">
         <div class="row">
             <div class="col-auto my-3">
-                <select>
-                    <option v-for="singleRace in this.race" >
+                <select name="race" v-model="this.store.raceSelected">
+                    <option v-for="singleRace in this.race" @change="$emit('ricerca')">
                         {{ singleRace }}
                     </option>
                     

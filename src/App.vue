@@ -14,32 +14,46 @@
     data(){
       return{
         store,
-        searchResult: []
+        searchResult: [],
+        urlArchetypes: 'https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=Alien'
       }
     },
     methods: {
       
       getRace(){
-        console.log('getRace')
         this.store.cardList.forEach((element) => {
-
-          console.log(element.race);
           this.searchResult.push(element.race);
-          console.log(this.searchResult);
         } );
         
       },
 
       getAliens(){
-        console.log('getAlien')
-        axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=Alien')
+        axios.get(this.urlArchetypes)
         .then(response => {
-          console.log(response);
           this.store.cardList = response.data.data;
-          console.log(this.store.cardList);
           this.getRace()
         })
+      },
+      getSelectedRace(){
+        let razzaSingolaList= []
+        this.store.raceSelected.forEach((element)=>{
+          if(!razzaSingolaList.includes(element)){
+            razzaSingolaList.push(element)
+          }
+          console.log(razzaSingolaList)
+        })
+        
+        razzaSingolaList.forEach((singolaRazza)=>{
+          if(singolaRazza == this.store.raceSelected){
+            this.urlArchetypes += `&race=${this.store.raceSelected}`;
+            axios.get(this.urlArchetype)
+            .then(response => {
+              this.store.cardList = response.data.data;
+        })
+          }
+        })
       }
+
     },
     created(){
       this.getAliens()
@@ -52,7 +66,7 @@
   <MyHeader />
 
   <main>
-    <MySearch :race="this.searchResult"/>
+    <MySearch :race="this.searchResult" @ricerca="getSelectedRace"/>
     <CentralBox />
   </main>
  {{  }}
