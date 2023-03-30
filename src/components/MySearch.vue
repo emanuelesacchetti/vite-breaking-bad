@@ -6,7 +6,7 @@
         },
         data(){
             return{
-                myRace: this.race
+                
             }
         }
     }
@@ -19,10 +19,10 @@
         <div class="row">
             <div class="col-auto my-3">
                 <select>
-                    <option v-for="singleRace in this.myRace" value='index'>
+                    <option v-for="singleRace in this.race" >
                         {{ singleRace }}
                     </option>
-                    <option value="">ciao</option>
+                    
                 </select>
             </div>
         </div>
