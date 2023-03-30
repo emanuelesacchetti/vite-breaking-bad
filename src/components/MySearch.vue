@@ -1,6 +1,14 @@
 <script>
     export default {
-        name: 'MySearch'
+        name: 'MySearch',
+        props:{
+            race: Array
+        },
+        data(){
+            return{
+                myRace: this.race
+            }
+        }
     }
 
 </script>
@@ -10,7 +18,12 @@
     <div class="container">
         <div class="row">
             <div class="col-auto my-3">
-                <input type="search" name="search" id="search" placeholder="Search">
+                <select>
+                    <option v-for="singleRace in this.myRace" value='index'>
+                        {{ singleRace }}
+                    </option>
+                    <option value="">ciao</option>
+                </select>
             </div>
         </div>
     </div>

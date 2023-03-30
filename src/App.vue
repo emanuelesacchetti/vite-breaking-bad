@@ -13,15 +13,32 @@
     },
     data(){
       return{
-        store
+        store,
+        searchResult: []
+      }
+    },
+    methods: {
+      
+      getRace(){
+        this.store.cardList.forEach((element) => {
+          console.log(element.race);
+          this.searchResult.push(element.race);
+        } );
+        console.log(this.searchResult);
+      },
+
+      getAliens(){
+        axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=Alien')
+        .then(response => {
+          console.log(response);
+          this.store.cardList = response.data.data;
+          console.log(this.store.cardList)
+        })
       }
     },
     created(){
-      axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=Blue-Eyes')
-        .then(response => {
-          this.store.cardList = response.data.data
-          console.log(this.store.cardList)
-        })
+      this.getAliens(),
+      this.getRace()
     }
   }
 </script>
@@ -31,7 +48,7 @@
   <MyHeader />
 
   <main>
-    <MySearch />
+    <MySearch :race="this.searchResult"/>
     <CentralBox />
   </main>
  {{  }}
